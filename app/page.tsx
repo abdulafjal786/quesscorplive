@@ -30,7 +30,7 @@ export default async function HomePage({
 
   
   // Extract filter params from URL
-  const searchQuery = typeof searchParam.search === 'string' ? searchParam.search : ''
+  // const searchQuery = typeof searchParam.search === 'string' ? searchParam.search : ''
 
   return (
     <div className="space-y-6">
@@ -119,9 +119,9 @@ export default async function HomePage({
           </p>
         </div>
         
-        <SearchFilters 
+        {/* <SearchFilters 
           initialSearch={searchQuery}
-          />
+          /> */}
       </Card>
 
       {/* Employees Table Section */}
