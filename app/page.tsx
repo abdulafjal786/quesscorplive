@@ -1,4 +1,7 @@
-import { Metadata } from 'next'
+export const dynamic = 'force-dynamic'
+
+
+// import { Metadata } from 'next'
 import { Suspense } from 'react'
 import EmployeeStats from '@/components/employees/EmployeeStats'
 // import AddEmployeeModal from '@/components/employees/AddEmployeeModal'
@@ -11,22 +14,23 @@ import EmployeesTableComponent from '@/components/employees/EmployeesTable'
 import {Button} from '../components/ui/Button'
 import { getEmployees } from '@/lib/api'
 
-export const metadata: Metadata = {
-  title: 'Dashboard | Employee Management',
-  description: 'Employee dashboard with search and filters',
-}
+// export const metadata: Metadata = {
+//   title: 'Dashboard | Employee Management',
+//   description: 'Employee dashboard with search and filters',
+// }
 
+// eslint-disable-next-line @next/next/no-async-client-component
 export default async function HomePage({
-  searchParams,
+  searchParam,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined }
+  searchParam: { [key: string]: string | string[] | undefined }
 }) {
   const { data: employees, error } = await getEmployees()
 
 
   
   // Extract filter params from URL
-  const searchQuery = typeof searchParams.search === 'string' ? searchParams.search : ''
+  const searchQuery = typeof searchParam.search === 'string' ? searchParam.search : ''
 
   return (
     <div className="space-y-6">
@@ -139,7 +143,7 @@ export default async function HomePage({
           <Suspense fallback={<LoadingSpinner fullScreen={false} />}>
             <EmployeesTableComponent 
               employees={employees || []}
-              searchParams={searchParams}
+              searchParam={searchParam}
             />
           </Suspense>
         )}

@@ -27,16 +27,16 @@ import React from 'react'
 
 interface EmployeesTableProps {
   employees: Employee[]
-  searchParams: {[key: string]: string | string[] | undefined}
+  searchParam: {[key: string]: string | string[] | undefined}
 }
 
 type SortField = 'name' | 'email' | 'department' | 'hireDate' | 'salary'
 type SortDirection = 'asc' | 'desc'
 
 // Create a separate component for the content that uses useSearchParams
-function EmployeesTableContent({ employees, searchParams }: EmployeesTableProps) {
-  const searchParam = useSearchParams()
-  const searchQuery = searchParam.get('search') || ''
+function EmployeesTableContent({ employees, searchParam }: EmployeesTableProps) {
+   const searchParams = useSearchParams()
+  const searchQuery = searchParams.get('search') ?? ''
   
   const [displayEmployees, setDisplayEmployees] = useState<Employee[]>(employees)
   const [sortField, setSortField] = useState<SortField>('name')

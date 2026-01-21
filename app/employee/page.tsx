@@ -3,12 +3,13 @@ import LoadingSpinner from "@/components/shared/LoadingSpinner";
 import { Suspense } from "react";
 import { getEmployees } from "@/lib/api"; // Assuming you have this function
 import { Employee } from "@/lib/types";
+export const dynamic = 'force-dynamic'
 
 // Make this an async function since you'll fetch data
 export default async function EmployeePage({
-  searchParams,
+  searchParam,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParam: { [key: string]: string | string[] | undefined };
 }) {
   // Fetch employees data
   let employees: Employee[] = [];
@@ -29,7 +30,7 @@ export default async function EmployeePage({
       <Suspense fallback={<LoadingSpinner fullScreen={false} />}>
         <EmployeesTableComponent 
           employees={employees}
-          searchParams={searchParams}
+          searchParam={searchParam}
         />
       </Suspense>
     </div>
